@@ -16,3 +16,14 @@
 *.exe
 *.out
 *.app
+
+# temporary files
+*.swp
+*~
+
+# generated folders
+/build.*
+/dep/bin
+/dep/lib
+/dep/share
+/dep/include
