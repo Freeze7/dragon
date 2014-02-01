@@ -23,7 +23,3 @@
 
 # generated folders
 /build.*
-/dep/bin
-/dep/lib
-/dep/share
-/dep/include
