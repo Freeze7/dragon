@@ -6,5 +6,6 @@ if [ ! -d "build.dragon.gmake.debug" ]; then
 fi
 cd "build.dragon.gmake.debug"
 cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
+cd ..
 
 exit 0

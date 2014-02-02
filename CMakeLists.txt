@@ -17,6 +17,11 @@ ExternalProject_Add (DEP_SDL2
 # project name
 project (dragon)
 
+# dragon executable
+add_executable (dragon
+	"${PROJECT_SOURCE_DIR}/dragon/main.c"
+)
+
 # set output locations
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
@@ -33,10 +38,8 @@ link_directories (
 	"${PROJECT_SOURCE_DIR}/dep/lib"
 )
 
-# dragon executable
-add_executable (dragon
-	"${PROJECT_SOURCE_DIR}/dragon/main.c"
-)
+# disable windows MFC and use standard libraries
+set (CMAKE_MFC_FLAG 0)
 
 # set dependencies
 add_dependencies (dragon
@@ -45,9 +48,23 @@ add_dependencies (dragon
 
 # link libraries
 target_link_libraries (dragon
-	SDL2main
-	SDL2
+	#SDL2main
+	#SDL2
 )
+
+# post processing of compiler flags
+# use /MT instead of /MD on windows
+set(CompilerFlags
+	CMAKE_CXX_FLAGS
+	CMAKE_CXX_FLAGS_DEBUG
+	CMAKE_CXX_FLAGS_RELEASE
+	CMAKE_C_FLAGS
+	CMAKE_C_FLAGS_DEBUG
+	CMAKE_C_FLAGS_RELEASE
+)
+foreach(CompilerFlag ${CompilerFlags})
+  string(REPLACE "/MD" "/MT" ${CompilerFlag} "${${CompilerFlag}}")
+endforeach()
 
 # install rules
 install (TARGETS dragon
