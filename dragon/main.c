@@ -2,6 +2,10 @@
 #include <SDL2/SDL.h>
 #include <logger.h>
 
+static const unsigned int screenWidth = 800;
+static const unsigned int screenHeight = 600;
+static const char* screenTitle = "Dragon";
+
 int main( int argc, char** argv )
 {
 
@@ -15,6 +19,24 @@ int main( int argc, char** argv )
 	    log_error( log, "failed to initialise SDL" );
 	    return -1;
 	}
+
+	/* open render window */
+	SDL_Window* mainWindow = SDL_CreateWindow( screenTitle, 100, 100, screenWidth, screenHeight, SDL_WINDOW_SHOWN );
+	if( !mainWindow )
+	{
+		log_error( log, "Failed to open main window" );
+		return -1;
+	}
+	SDL_Renderer* mainRenderer = SDL_CreateRenderer( mainWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+	if( !mainRenderer )
+	{
+		log_error( log, "Failed to get renderer" );
+		return -1;
+	}
+
+	/* clean up */
+	SDL_DestroyRenderer( mainRenderer );
+	SDL_DestroyWindow( mainWindow );
 
 	/* de-initialise SDL */
 	log_info( log, "shutting down SDL" );
