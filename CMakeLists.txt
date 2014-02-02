@@ -39,6 +39,9 @@ set (CMAKE_MFC_FLAG 0)
 # dragon executable
 add_executable (dragon
 	"${PROJECT_SOURCE_DIR}/dragon/main.c"
+	"${PROJECT_SOURCE_DIR}/dragon/logger.c"
+
+	"${PROJECT_SOURCE_DIR}/dragon/logger.h"
 )
 
 # set dependencies
