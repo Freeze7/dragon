@@ -1229,7 +1229,7 @@ endif(APPLE)
 # shared library prefix
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   set(SHARED_LIB_PREFIX "")
-else if("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
+elseif("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
   set(SHARED_LIB_PREFIX "")
 else()
   set(SHARED_LIB_PREFIX "lib")
