@@ -11,7 +11,7 @@ ExternalProject_Add (DEP_SDL2
 	PREFIX "${sdl2_PREFIX}"
 	DOWNLOAD_COMMAND ""
 	SOURCE_DIR "${sdl2_SOURCE_DIR}"
-	CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${sdl2_PREFIX} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DSDL_STATIC:BOOL=FALSE
+	CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${sdl2_PREFIX} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DSDL_STATIC=OFF
 )
 
 # project name
@@ -49,7 +49,7 @@ add_dependencies (dragon
 # link libraries
 target_link_libraries (dragon
 	SDL2main
-	SDL2-2.0
+	SDL2
 )
 
 # install rules

@@ -1228,15 +1228,15 @@ endif(APPLE)
 
 # shared library prefix
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-  set(SHARED_LIB_PREFIX "lib")
-else()
   set(SHARED_LIB_PREFIX "")
+else()
+  set(SHARED_LIB_PREFIX "lib")
 endif()
 
 if(SDL_SHARED)
   install(CODE "
-    execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
-    \"${SHARED_LIB_PREFIX}SDL2-2.0.${SHARED_LIB_EXTENSION}\" \"${SHARED_LIB_PREFIX}SDL2.${SHARED_LIB_EXTENSION}\")")
+  execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
+  \"${SHARED_LIB_PREFIX}SDL2-2.0.${SHARED_LIB_EXTENSION}\" \"${SHARED_LIB_PREFIX}SDL2.${SHARED_LIB_EXTENSION}\")")
   install(FILES ${SDL2_BINARY_DIR}/${SHARED_LIB_PREFIX}SDL2.${SHARED_LIB_EXTENSION} DESTINATION "lib${LIB_SUFFIX}")
 endif(SDL_SHARED)
 
