@@ -1215,11 +1215,29 @@ endforeach()
 list(APPEND INCLUDE_FILES ${BIN_INCLUDE_FILES})
 install(FILES ${INCLUDE_FILES} DESTINATION include/SDL2)
 
+# shared library extensions
+if(UNIX)
+  set(SHARED_LIB_EXTENSION "so")
+endif(UNIX)
+if(WIN32)
+  set(SHARED_LIB_EXTENSION "dll")
+endif(WIN32)
+if(APPLE)
+  set(SHARED_LIB_EXTENSION "dynlib")
+endif(APPLE)
+
+# shared library prefix
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+  set(SHARED_LIB_PREFIX "lib")
+else()
+  set(SHARED_LIB_PREFIX "")
+endif()
+
 if(SDL_SHARED)
   install(CODE "
     execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
-    \"libSDL2-2.0.so\" \"libSDL2.so\")")
-  install(FILES ${SDL2_BINARY_DIR}/libSDL2.so DESTINATION "lib${LIB_SUFFIX}")
+    \"${SHARED_LIB_PREFIX}SDL2-2.0.${SHARED_LIB_EXTENSION}\" \"${SHARED_LIB_PREFIX}SDL2.${SHARED_LIB_EXTENSION}\")")
+  install(FILES ${SDL2_BINARY_DIR}/${SHARED_LIB_PREFIX}SDL2.${SHARED_LIB_EXTENSION} DESTINATION "lib${LIB_SUFFIX}")
 endif(SDL_SHARED)
 
 if(NOT WINDOWS OR CYGWIN)
