@@ -48,7 +48,6 @@ add_dependencies (dragon
 
 # link libraries
 target_link_libraries (dragon
-	SDL2main
 	SDL2
 )
 
