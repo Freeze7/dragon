@@ -3,8 +3,15 @@
 
 int main()
 {
-	printf( "Hello World!\n" );
-	SDL_Init( SDL_INIT_EVERYTHING );
+
+    /* initialise SDL */
+	if( SDL_Init( SDL_INIT_EVERYTHING ) )
+	{
+	    fprintf( stderr, "\nfailed to initialise SDL: %s\n", SDL_GetError() );
+	    return -1;
+	}
+
+	/* de-initialise SDL */
 	SDL_Quit();
 	return 0;
 }
