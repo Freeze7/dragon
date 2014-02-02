@@ -4,7 +4,8 @@
 int main( int argc, char** argv )
 {
 
-    /* initialise SDL */
+	/* initialise SDL */
+	printf( "initialising SDL...\n" );
 	if( SDL_Init( SDL_INIT_EVERYTHING ) )
 	{
 	    fprintf( stderr, "\nfailed to initialise SDL: %s\n", SDL_GetError() );
@@ -12,6 +13,7 @@ int main( int argc, char** argv )
 	}
 
 	/* de-initialise SDL */
+	printf( "shutting down SDL...\n" );
 	SDL_Quit();
 	return 0;
 }
