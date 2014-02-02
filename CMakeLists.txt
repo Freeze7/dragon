@@ -17,11 +17,6 @@ ExternalProject_Add (DEP_SDL2
 # project name
 project (dragon)
 
-# dragon executable
-add_executable (dragon
-	"${PROJECT_SOURCE_DIR}/dragon/main.c"
-)
-
 # set output locations
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
@@ -41,6 +36,11 @@ link_directories (
 # disable windows MFC and use standard libraries
 set (CMAKE_MFC_FLAG 0)
 
+# dragon executable
+add_executable (dragon
+	"${PROJECT_SOURCE_DIR}/dragon/main.c"
+)
+
 # set dependencies
 add_dependencies (dragon
 	DEP_SDL2
@@ -48,8 +48,8 @@ add_dependencies (dragon
 
 # link libraries
 target_link_libraries (dragon
-	#SDL2main
-	#SDL2
+	SDL2main
+	SDL2
 )
 
 # post processing of compiler flags
