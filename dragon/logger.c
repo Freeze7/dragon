@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <logger.h>
-#include <SDL/SDL_error.h>
+#include <SDL2/SDL_error.h>
 
 /* ----------------------------------------------------- */
 LOG log_open( const char* fileName )
